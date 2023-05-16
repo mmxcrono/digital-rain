@@ -25,31 +25,12 @@ const delayClasses = [
 	'delay-19',
 	'delay-20',
 ];
-
+const allCharacters = '゠ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺ・ーヽヾヿABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+<>/?{}[]~';
 const className = "digital-rain";
 
-$.when( $.ready ).then(() => {
-  // Document is ready.
-	
-	// Want to add characters, then mod a certain number to apply
-	// class names with varying animation-delay values
-
-	const numCols = 30;
-	const columnLength = 20;
-
-	// Loop for many columns
-	for (let i = 0; i < numCols; i++) {
-		const characters = generateRandomString(columnLength).split('');
-
-		$('body').append(`<div id="column-${i}" class="rain-column">`);
-		generateColumn($(`#column-${i}`), characters, Math.floor(Math.random() * 20));
-	}
-});
-
-const generateColumn = (parent, characters, offset) => {
+const addColumn = (parent, characters, offset) => {
 	let character;
-	
-	// This is for a single column
+
 	for (let i = 0; i < characters.length; i++) {
 		character = characters[i];
 
@@ -58,15 +39,26 @@ const generateColumn = (parent, characters, offset) => {
 	}
 }
 
+const addRain = (target = 'body', numColumns = 30, columnLength = 20) => {
+	let randomCharacters;
+	for (let i = 0; i < numColumns; i++) {
+		randomCharacters = generateRandomString(columnLength).split('');
+
+		$(target).append(`<div id="column-${i}" class="rain-column">`);
+		addColumn($(`#column-${i}`), randomCharacters, Math.floor(Math.random() * 20));
+	}
+}
 
 const generateRandomString = (length) => {
 	var result           = '';
-	var characters       = '゠ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺ・ーヽヾヿABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+<>/?{}[]~';
-	var charactersLength = characters.length;
+	var charactersLength = allCharacters.length;
 
 	for ( var i = 0; i < length; i++ ) {
-			result += characters.charAt(Math.floor(Math.random() * charactersLength));
+		result += allCharacters.charAt(Math.floor(Math.random() * charactersLength));
 	}
 
 	return result;
 }
+$(document).ready(() => {
+	addRain();
+});

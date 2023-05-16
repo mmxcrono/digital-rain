@@ -63,7 +63,6 @@ body {
 .delay-10 {
 	animation-delay: 1000ms;
 }
-
 .delay-11 {
 	animation-delay: 1100ms;
 }
@@ -94,15 +93,6 @@ body {
 .delay-20 {
 	animation-delay: 2000ms;
 }
-
-/* Animate from
-	1 opacity
-	#f0f0f0 text
-
-	to
-	0 opacity
-	green text
- */
 
 @-webkit-keyframes become-opaque {
   0%   {
