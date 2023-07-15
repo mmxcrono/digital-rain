@@ -1,0 +1,18 @@
+{
+  "name": "digital-rain",
+  "version": "1.0.0",
+  "description": "Digital rain in the browser",
+  "main": "digital-rain.js",
+  "scripts": {
+    "compile": "tsc",
+    "build": "npm run sass && npm run compile",
+    "sass": "sass style.scss > dist/style.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.63.4",
+    "typescript": "^5.1.6"
+  }
+}

@@ -1,0 +1,46 @@
+/* Digital Rain character effect like in The Matrix movie
+
+@author mmxcrono
+@repo github.com/mmxcrono/digital-rain
+*/
+
+html, body {
+	margin: 0;
+	padding: 0;
+	background: black;
+}
+
+.rain-column {
+	display: inline-block;
+}
+
+.digital-rain {
+	opacity: 0;
+	color: darkgreen;
+	font-size: 14pt;
+	transform: scaleX(-1);
+	animation: become-opaque 2s infinite;
+}
+
+$number-of-rules: 20;
+
+@for $i from 1 through $number-of-rules {
+  .delay-#{$i} {
+    animation-delay: #{$i}00ms;
+  }
+}
+
+@keyframes become-opaque {
+  0%   {
+		opacity: 1;
+		color: #f0f0f0;
+	}
+	10%   {
+		opacity:  .9;
+		color: green;
+	}
+  100% {
+		opacity: 0;
+		color: darkgreen;
+	}
+}
