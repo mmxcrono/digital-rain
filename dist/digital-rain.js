@@ -3,16 +3,18 @@
  * Digital rain script
  * Add characters with certain classes to utilize
  * CSS animations for a "rain" effect
+ * @author mmxcrono
+ * @repo github.com/mmxcrono/digital-rain
  */
 class DigitalRain {
-    constructor(numColumns, columnLength) {
-        this.numColumns = numColumns;
-        this.columnLength = columnLength;
+    constructor(numCols, numRows) {
+        this.numCols = numCols;
+        this.columnLength = numRows;
     }
     addRain() {
         const container = document.createElement('div');
         container.classList.add('digital-rain-container');
-        for (let i = 0; i < this.numColumns; i++) {
+        for (let i = 0; i < this.numCols; i++) {
             const randomCharacters = this.generateRandomString(this.columnLength);
             const column = document.createElement('div');
             column.setAttribute('id', `column-${i}`);
@@ -44,6 +46,10 @@ DigitalRain.UNIQUE_DELAY_COUNT = 20;
 DigitalRain.ALL_CHARS = '゠ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺ・ーヽヾヿABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+<>/?{}[]~';
 DigitalRain.CLASS_NAME = "digital-rain";
 (function () {
-    const digitalRain = new DigitalRain(40, 20);
+    var _a, _b;
+    const urlParams = new URLSearchParams(window.location.search);
+    const numCols = (_a = urlParams.get('numCols')) !== null && _a !== void 0 ? _a : '40';
+    const numRows = (_b = urlParams.get('numRows')) !== null && _b !== void 0 ? _b : '20';
+    const digitalRain = new DigitalRain(parseInt(numCols), parseInt(numRows));
     digitalRain.addRain();
 })();
