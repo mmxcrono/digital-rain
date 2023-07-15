@@ -2,16 +2,25 @@
   "name": "digital-rain",
   "version": "1.0.0",
   "description": "Digital rain in the browser",
-  "main": "digital-rain.js",
+  "main": "dist/digital-rain.js",
   "scripts": {
+    "start": "npm run build",
+    "clean": "rm -rf dist && mkdir dist",
     "compile": "tsc",
-    "build": "npm run sass && npm run compile",
-    "sass": "sass style.scss > dist/style.css",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run clean && npm run sass && npm run compile",
+    "sass": "sass style.scss > dist/style.css"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmxcrono/digital-rain.git"
+  },
+  "author": "Hoang Nguyen",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14",
+    "npm": ">=6"
+  },
+  "devDependencies": {
     "sass": "^1.63.4",
     "typescript": "^5.1.6"
   }

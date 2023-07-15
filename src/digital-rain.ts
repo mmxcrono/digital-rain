@@ -10,19 +10,19 @@ class DigitalRain {
 	static readonly ALL_CHARS = '゠ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺ・ーヽヾヿABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+<>/?{}[]~';
 	static readonly CLASS_NAME = "digital-rain";
 
-	private numColumns: number;
+	private numCols: number;
 	private columnLength: number;
 
-	constructor(numColumns: number, columnLength: number) {
-		this.numColumns = numColumns;
-		this.columnLength = columnLength;
+	constructor(numCols: number, numRows: number) {
+		this.numCols = numCols;
+		this.columnLength = numRows;
 	}
 
 	addRain(): void {
 		const container = document.createElement('div');
 		container.classList.add('digital-rain-container');
 
-		for (let i = 0; i < this.numColumns; i++) {
+		for (let i = 0; i < this.numCols; i++) {
 			const randomCharacters = this.generateRandomString(this.columnLength);
 			const column = document.createElement('div');
 			column.setAttribute('id', `column-${i}`);
@@ -58,6 +58,9 @@ class DigitalRain {
 }
 
 (function() {
-	const digitalRain = new DigitalRain(40, 20);
+	const urlParams = new URLSearchParams(window.location.search);
+	const numCols = urlParams.get('numCols') ?? '40';
+	const numRows = urlParams.get('numRows') ?? '20';
+	const digitalRain = new DigitalRain(parseInt(numCols), parseInt(numRows));
 	digitalRain.addRain();
 })();
